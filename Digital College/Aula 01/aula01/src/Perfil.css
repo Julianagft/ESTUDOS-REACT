@@ -1,0 +1,11 @@
+.perfil h2 {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 500;
+    color: brown;
+}
+
+.perfil img {
+    border-radius: 50%;
+    max-width: 200px;
+    max-height: 200px;
+}
