@@ -1,0 +1,13 @@
+
+.header {
+    background-color: bisque;
+    display: flex;
+    justify-content: space-between;
+}
+
+.botoes {
+    min-width:20vw;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,0 +1,18 @@
+.section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    background-color: blueviolet;
+    padding: 0px;
+    
+}
+
+.cards {
+    display: flex;
+    justify-content: space-around;
+    gap: 16px;
+    background-color: aqua;
+    width: 90vw;
+}
