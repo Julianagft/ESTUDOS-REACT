@@ -1,12 +1,12 @@
 import './CardIcon.css'
 
-function CardIcon(props) {
+function CardIcon({titulo, descricao}) {
   
     return (
         <div className='card '>
             <i>icone</i>
-            <h2>{props.titulo}</h2>
-            <p>{props.descricao}</p>
+            <h2>{titulo}</h2>
+            <p>{descricao}</p>
         </div>
     )
 }
