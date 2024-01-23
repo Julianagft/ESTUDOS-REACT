@@ -43,8 +43,8 @@ function App() {
     return (
         <div>
             <Header />
-            <main>
-               <Section titulo="Sobre"> 
+
+            <Section titulo="Sobre"> 
 
                     <div className="cards">
                     {culturas.map((cultura) => {
@@ -68,7 +68,6 @@ function App() {
                     
                 </Section> 
                 
-            </main>
         </div> 
     )
 }

@@ -1,7 +1,6 @@
 import './Section.css'
-import CardIcon from '../CardIcon/CardIcon'
 
-function Section (props){
+function Section(props){
    
    
     return (
