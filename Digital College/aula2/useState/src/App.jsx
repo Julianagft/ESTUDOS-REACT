@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useRef} from "react";
 import "./App.css";
 
 // Usando useState
@@ -7,23 +7,42 @@ import "./App.css";
 function App() {
 
   const [frutas, setFrutas]= useState([]);
+  const valorRef = useRef(null); 
+
   
-  function frutasParaLi(fruta) {
-    return <li>{fruta}</li>
+  function frutasParaLi(fruta, index) {
+    return <li key={index}>{fruta}</li>
   }
 
   function addFrutas() {
-    
-    const auxiliar = [...frutas, "uva"];
-    
-    setFrutas(auxiliar)
+
+    const novaFruta = valorRef.current.value;
+
+    if(novaFruta.trim() !== "") {
+      //Verifica se o valor não está vazio antes de adicionar a lista;
+
+      const auxiliar = [...frutas, novaFruta];
+
+      setFrutas(auxiliar);
+
+      // Limpa o input antes de continuar;
+      valorRef.current.value = "";
+    } else {
+      alert("Adicione um valor válido a lista")
+    }
+  }
+
+  function limpar() {
+    setFrutas([]);
+    valorRef.current.value = "";
   }
 
   return (
    <div id="app" >
-
-      <input  type="text" />
+      <h1>Lista de Frutas</h1>
+      <input ref={valorRef} type="text" />
       <button onClick={addFrutas} >Novo</button>
+      <button onClick={limpar}>Limpar</button>
 
       <ul>
         {frutas.map(frutasParaLi)}
