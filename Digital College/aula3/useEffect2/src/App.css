@@ -1,0 +1,24 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.card {
+  padding: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card table {
+  width: 75%;
+  border: "1px solid black";
+  border-collapse: collapse;
+}
+
+.card th, .card td {
+  border: 1px solid black;
+  padding: 8px; 
+}
