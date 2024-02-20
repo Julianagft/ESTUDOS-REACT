@@ -20,7 +20,7 @@ function App() {
   return (
    <div id="app" ref={appRef}>
     <h1 ref={retornoRef}>Escolha o texto</h1>
-    <input type="text" ref={conteudoRef} />
+    <input name="filtro" type="text" ref={conteudoRef} />
     <button onClick={mostrar}>Mostrar</button>
     <br />
     <input onChange={mudarCor}  type="color"/>

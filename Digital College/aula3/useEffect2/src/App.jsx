@@ -12,14 +12,13 @@ function App() {
   
         const data = await requisicao.json();
         setCidades(data)
+        console.log(data)
       } catch (error) {
         console.error("Erro de fetching", error);
       }
     }   
-
     getData();
   }, [])
- 
 
   return (
     <>
