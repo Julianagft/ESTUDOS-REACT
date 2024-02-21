@@ -12,25 +12,25 @@ const apiJSH = axios.create({
   }
 
   async function getPosts(userId) {
-    const response = await apiJSH.get(`/${userId}/posts`)
+    const response = await apiJSH.get(`/users/${userId}/posts`)
 
     return response
   }
 
   async function getComments(postId) {
-    const response = await apiJSH.get(`/${postId}/comments`)
+    const response = await apiJSH.get(`/posts/${postId}/comments`)
 
     return response
   }
 
   async function getAlbums(userId) {
-    const response = await apiJSH.get(`/${userId}/albums`)
+    const response = await apiJSH.get(`/users/${userId}/albums`)
 
     return response
   }
 
   async function getPhotos(albumId) {
-    const response = await apiJSH.get(`/${albumId}/photos`)
+    const response = await apiJSH.get(`/albums/${albumId}/photos`)
 
     return response
   }

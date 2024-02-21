@@ -1,56 +1,64 @@
 'use client'
 
-import { useRouter } from 'next/navigation';
-import { useParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation'
 import { useState, useEffect } from "react";
 import API from '../../services/Api'
+import Link from 'next/link';
 
-function user({}) {
-    const router = useRouter();
-    const {id} = useParams();
+function User({}) {
+    const searchParams = useSearchParams()
+    const id = searchParams.get('id')
 
-    const[users, setUsers] = useState([]);
+
+    const[user, setUser] = useState(null); //para armazenar um único usuário;
     const[posts, setPosts] = useState([]);
-    const[comments, setComments] = useState([]);
-
+    const[albums, setAlbums] = useState([]);
+    
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const userId = searchParams.get('id'); // Obtém o ID do usuário da URL
-                const userResponse = await API.getUsers();
-                const postResponse = await API.getPosts(userId);
-                const commentResponse = await API.getComments(postResponse.data[0]?.id); // assume que há pelo menos um post
+                if(id) {
+                    const userResponse = await API.getUsers(id);
+                    const postResponse = await API.getPosts(id);
+                    const albumResponse = await API.getAlbums()
 
-                setUsers(userResponse.data[0]); // assume que há pelo menos um usuário
-                setPosts(postResponse.data);
-                setComments(commentResponse.data);
+                    setUser(userResponse.data[0]); // assume que há pelo menos um usuário
+                    setPosts(postResponse.data);
+                    setAlbums(albumResponse.data)
+                }
+                
                 
             } catch (error) {
                 console.error("Erro ao buscar dados o usuário", error)
             }
         };
         fetchData();
-    }, [])
+    }, [id])
     
         
 
     return (
         <div className='user'>
-            <h1>{users.name}</h1>
+            <h1>{user ? user.name : 'Usuário não encontrado'}</h1>
+            <h2>Postagens:</h2> 
             <ul>
                 {posts.map((postagens) => (
-                    <div key={postagens.id}>
-                        <h2>{postagens.title}</h2>
+                    <li>
+                        <h3 className='font-bold'>{postagens.title}</h3>
                         <p>{postagens.body}</p>
-                        <p>Quantidade de comentários: {comments.length}</p>
-                    </div> 
+                    </li>
+                ))}
+            </ul>
+            <h2>Albums:</h2>
+            <ul>
+                {albums.map(album => (
+                    <li key={album.id}><Link href={`/pages/album?id=${album.id}`}>{album.title}</Link></li>
                 ))}
             </ul>
             
-
-
         </div>
     )
 }
 
-export default user;
+export default User;
+
