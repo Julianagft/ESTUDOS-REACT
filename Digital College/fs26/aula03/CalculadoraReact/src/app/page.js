@@ -1,7 +1,9 @@
-import { useState } from 'react';
-import './App.css';
+"use client"
 
-function App() {
+import { useState } from 'react';
+import "./globals.css"
+
+export default function Home() {
   const [theme, setTheme] = useState("light")
   const [result, setResult] = useState(0)
   const [fieldCalc, setFieldCalc] = useState("")
@@ -45,5 +47,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
