@@ -28,7 +28,8 @@ function Main() {
                 {users.map((user) => (
                     <li key={user.id}>
                       <div className="mt-2.5">
-                          <Link href={`/pages/user?id=${user.id}`}>{`@${user.username}`}</Link>
+                          <Link href={`/pages/user?id=${user.id}`}>{`@${user.username}`}</Link> 
+                          {/* //O link permite que a página não precise recarregar, ao contrário da <a> ancora; */}
                           <h3>{user.name}</h3>
                       </div> 
                     </li>
