@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 //useSelector:  Usamos para acessar um dado dentro do reducer;
 //useDispatch:  Usamos para alterar um dado dentro do reducer;
 
-import UserActionTypes from "../../redux/user/action-types";
+import { loginUser, logoutUser } from "../../redux/user/actions";
 
 // Components
 import Cart from "../cart/index";
@@ -25,12 +25,12 @@ function Header() {
   };
 
   const handleLoginClick = () => {
-    dispatch({
-      type: UserActionTypes.LOGIN, //O type precisa ser EXATAMENTE igual ao type que está no userReducer para funcionar;
-      payload: ({name: "Juliana", idade: 29})
-    
-    })
-  }
+    dispatch(loginUser({nome: "Juliana", idade: 29}))
+  };
+
+  const handleLogoutClick = () => {
+    dispatch(logoutUser())
+  };
 
   return (
     <Styles.Container>
@@ -38,7 +38,7 @@ function Header() {
       <Styles.Buttons>
         {
           currentUser ? (
-            <div>Sair</div>
+            <div onClick={handleLogoutClick}>Sair</div>
           ) : (
             <div onClick={handleLoginClick}>Login</div>
           )
