@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux"; 
 //useSelector:  Usamos para acessar um dado dentro do reducer;
 //useDispatch:  Usamos para alterar um dado dentro do reducer;
@@ -15,10 +15,14 @@ function Header() {
   const [cartIsVisible, setCartIsVisible] = useState(false);
 
   const {currentUser} = useSelector( (rootReducer) => rootReducer.userReducer) // Vai assinalar todo o state do nosso userReducer para esse objeto, por isso conseguimos acessar o currentUser daqui;
+  const {products} = useSelector( (rootReducer) => rootReducer.cartReducer) 
 
   const dispatch = useDispatch()
 
-  console.log(currentUser);
+  const productsCount = useMemo(() => {
+    return products.reduce((acc, current) => acc + current.quantity, 0) //O zero é a quantidade inicial de produtos
+  }, [products])
+   // O hook useMemo é uma função do React que é usada para memorizar o valor de uma expressão e só recalculá-lo quando suas dependências mudarem. Ele é útil para otimizar o desempenho de componentes, evitando cálculos desnecessários.
 
   const handleCartClick = () => {
     setCartIsVisible(true);
@@ -44,7 +48,7 @@ function Header() {
           )
         }
         
-        <div onClick={handleCartClick}>Carrinho</div>
+        <div onClick={handleCartClick}>Carrinho ({productsCount})</div>
       </Styles.Buttons>
 
       <Cart isVisible={cartIsVisible} setIsVisible={setCartIsVisible} />
