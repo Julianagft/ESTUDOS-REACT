@@ -4,12 +4,14 @@ import { useSelector, useDispatch } from "react-redux";
 //useDispatch:  Usamos para alterar um dado dentro do reducer;
 
 import { loginUser, logoutUser } from "../../redux/user/actions";
+import { selectProductsCount } from "../../redux/cart/cart_selector";
 
 // Components
 import Cart from "../cart/index";
 
 // Styles
 import * as Styles from "./styles";
+
 
 function Header() {
   const [cartIsVisible, setCartIsVisible] = useState(false);
@@ -19,9 +21,8 @@ function Header() {
 
   const dispatch = useDispatch()
 
-  const productsCount = useMemo(() => {
-    return products.reduce((acc, current) => acc + current.quantity, 0) //O zero é a quantidade inicial de produtos
-  }, [products])
+  const productsCount = useSelector(selectProductsCount)
+
    // O hook useMemo é uma função do React que é usada para memorizar o valor de uma expressão e só recalculá-lo quando suas dependências mudarem. Ele é útil para otimizar o desempenho de componentes, evitando cálculos desnecessários.
 
   const handleCartClick = () => {

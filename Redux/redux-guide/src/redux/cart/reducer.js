@@ -3,7 +3,6 @@ import CartActionTypes from "./action-types";
 
 const initialState = {
     products: [],
-    productsTotalPrice: 0
 }
 
 // No case das actions SEMPRE precisamos retornar um novo objeto sempre, e esse novo objeto será assinalado ao nosso State.
