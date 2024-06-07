@@ -1,11 +1,13 @@
 // Armazena o rootReducer
-
-import {createStore, applyMiddleware} from "redux"; // Ele está assim pq o redux recomenda o uso do redux toolkit;
-
-import logger from "redux-logger";
-
+import { configureStore } from "@reduxjs/toolkit";
+import {createLogger} from "redux-logger";
 import rootReducer from "./root-reducer.js";
 
-const store = createStore(rootReducer, applyMiddleware(logger));
+const logger = createLogger();
+
+const store = configureStore({
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger)
+})
 
 export default store;
