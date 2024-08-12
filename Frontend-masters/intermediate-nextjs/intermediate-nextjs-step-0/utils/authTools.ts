@@ -41,12 +41,12 @@ export const signin = async ({
     where: eq(users.email, email),
   })
 
-  if (!match) throw new Error('invalid user')
+  if (!match) throw new Error('Usuário não encontrado!')
 
   const correctPW = await comparePW(password, match.password)
 
   if (!correctPW) {
-    throw new Error('invalud user')
+    throw new Error('Senha incorreta!')
   }
 
   const token = createTokenForUser(match.id)
